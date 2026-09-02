@@ -4,7 +4,7 @@
 #include <stdint.h>
 #include "image.h"
 
-// BMP ফাইল লোড করার ফাংশন
+// Function of load bmp file
 int load_bmp(const char *filename) {
     if (!filename) return 0;
 
@@ -13,15 +13,13 @@ int load_bmp(const char *filename) {
 
     BMPFileHeader fileHeader;
     BMPInfoHeader infoHeader;
-
-    // ফাইল ও ইনফো হেডার রিড করা
+    
     if (fread(&fileHeader, sizeof(BMPFileHeader), 1, input) != 1 ||
         fread(&infoHeader, sizeof(BMPInfoHeader), 1, input) != 1) {
         fclose(input);
         return 0;
     }
-
-    // 'BM' সিগনেচার, ২৪-বিট বিট-ডেপথ এবং আনকমপ্রেসড RGB চেক করা
+//checking bm signature
     if (fileHeader.type != 0x4d42 || infoHeader.bitCount != 24 || infoHeader.compression != 0) {
         fclose(input);
         return 0;
@@ -31,27 +29,26 @@ int load_bmp(const char *filename) {
     int new_w = infoHeader.width;
     int new_h = is_top_down ? -infoHeader.height : infoHeader.height;
 
-    // ইমেজ সাইজ ভ্যালিডেশন
+    //image size validation
     if (new_w <= 0 || new_h <= 0) {
         fclose(input);
         return 0;
     }
 
-    // পিক্সেল বাফারের জন্য মেমোরি বরাদ্দ
+    //alocate memory for pixel buffer
     BMPPixel *new_pixels = (BMPPixel *)malloc(new_w * new_h * sizeof(BMPPixel));
     if (!new_pixels) {
         fclose(input);
         return 0;
     }
 
-    // পিক্সেল ডাটার শুরুতে সিঙ্ক করা
     if (fseek(input, fileHeader.pixelOffset, SEEK_SET) != 0) {
         free(new_pixels);
         fclose(input);
         return 0;
     }
 
-    // ৪-বাইট প্যাডিং হিসাব
+    // 4 byte padding
     int padding = (4 - (new_w * sizeof(BMPPixel)) % 4) % 4;
 
     for (int y = 0; y < new_h; y++) {
@@ -68,7 +65,7 @@ int load_bmp(const char *filename) {
 
     fclose(input);
 
-    // পুরোনো মেমোরি খালি করে নতুন ইমেজ ডাটা সেট করা
+    // free of old memory
     if (img_pixels) free(img_pixels);
     if (undo_pixels) {
         free(undo_pixels);
@@ -84,7 +81,7 @@ int load_bmp(const char *filename) {
     return 1;
 }
 
-// BMP ফাইল সেভ করার ফাংশন
+// Function of BMP file save
 int save_bmp(const char *filename) {
     if (!filename || !img_pixels || img_w <= 0 || img_h <= 0) return 0;
 
@@ -97,36 +94,36 @@ int save_bmp(const char *filename) {
     BMPFileHeader fileHeader;
     BMPInfoHeader infoHeader;
 
-    // ফাইল হেডার সেটআপ
-    fileHeader.type = 0x4d42; // "BM"
+    // setup of fileheader
+    fileHeader.type = 0x4d42; 
     fileHeader.size = sizeof(BMPFileHeader) + sizeof(BMPInfoHeader) + imageSize;
     fileHeader.reserved1 = 0;
     fileHeader.reserved2 = 0;
     fileHeader.pixelOffset = sizeof(BMPFileHeader) + sizeof(BMPInfoHeader);
 
-    // ইনফো হেডার সেটআপ
+    
     memset(&infoHeader, 0, sizeof(BMPInfoHeader));
     infoHeader.size = sizeof(BMPInfoHeader);
     infoHeader.width = img_w;
-    infoHeader.height = img_h; // স্ট্যান্ডার্ড Bottom-Up BMP
+    infoHeader.height = img_h;
     infoHeader.planes = 1;
     infoHeader.bitCount = 24;
     infoHeader.compression = 0;
     infoHeader.imageSize = imageSize;
-    infoHeader.xPixelsPerM = 2835; // ~72 DPI
+    infoHeader.xPixelsPerM = 2835; 
     infoHeader.yPixelsPerM = 2835;
     infoHeader.colorsUsed = 0;
     infoHeader.colorsImportant = 0;
 
-    // হেডার রাইট করা
+    
     if (fwrite(&fileHeader, sizeof(BMPFileHeader), 1, output) != 1 ||
         fwrite(&infoHeader, sizeof(BMPInfoHeader), 1, output) != 1) {
         fclose(output);
-        remove(filename); // ব্যর্থ হলে আংশিক তৈরি ফাইল মুছে ফেলা
+        remove(filename); 
         return 0;
     }
 
-    // পিক্সেল ডাটা ও প্যাডিং রাইট করা
+  
     uint8_t zero = 0;
     for (int y = 0; y < img_h; y++) {
         if (fwrite(&img_pixels[y * img_w], sizeof(BMPPixel), img_w, output) != (size_t)img_w) {
