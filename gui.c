@@ -7,10 +7,10 @@
 #include "gui.h"
 #include "image.h"
 
-// IUP ইমেজ হ্যান্ডেল (শুধুমাত্র gui.c এর ভেতরে ব্যবহারের জন্য static)
+// IUP image handle
 static Ihandle *img_handle = NULL;
 
-// Undo ব্যাকআপ সেভ করার হেল্পার ফাংশন
+//1. backup helper function of Undo file save
 static void save_undo_state(void) {
     if (!img_pixels || img_w <= 0 || img_h <= 0) return;
 
@@ -24,17 +24,17 @@ static void save_undo_state(void) {
     memcpy(undo_pixels, img_pixels, img_w * img_h * sizeof(BMPPixel));
 }
 
-// ক্যানভাস রিফ্রেশ করার ফাংশন
+//2. function of refreshing canvas
 void update_canvas_image(void) {
     if (!img_pixels || img_w <= 0 || img_h <= 0) return;
 
-    // RGB বাফারের জন্য ৩ বাইট প্রতি পিক্সেল অ্যালোকেট করা
+    // alocate 3 byte buffer for rgb
     unsigned char *rgb_buffer = (unsigned char *)malloc(img_w * img_h * 3);
     if (!rgb_buffer) return;
 
     for (int y = 0; y < img_h; y++) {
         for (int x = 0; x < img_w; x++) {
-            int src_idx = (img_h - 1 - y) * img_w + x; // Bottom-up alignment
+            int src_idx = (img_h - 1 - y) * img_w + x;
             int dst_idx = (y * img_w + x) * 3;
 
             rgb_buffer[dst_idx + 0] = img_pixels[src_idx].r;
@@ -51,7 +51,7 @@ void update_canvas_image(void) {
     if (display) IupUpdate(display);
 }
 
-// Open Image Callback
+//3. Open Image Callback
 int open_image_cb(Ihandle *self) {
     (void)self;
 
@@ -76,7 +76,7 @@ int open_image_cb(Ihandle *self) {
     return IUP_DEFAULT;
 }
 
-// Canvas Redraw Callback
+//4. Canvas Redraw Callback
 int canvas_redraw_cb(Ihandle *self) {
     IupDrawBegin(self);
     IupDrawParentBackground(self);
@@ -102,7 +102,7 @@ int canvas_redraw_cb(Ihandle *self) {
     return IUP_DEFAULT;
 }
 
-// Undo Callback
+//5. Undo Callback
 int undo_cb(Ihandle *self) {
     (void)self;
 
@@ -124,7 +124,7 @@ int undo_cb(Ihandle *self) {
     return IUP_DEFAULT;
 }
 
-// Brightness Adjustment Callback
+//6. Brightness Adjustment Callback
 int bright_cb(Ihandle *self) {
     (void)self;
     if (!img_pixels || img_w <= 0 || img_h <= 0){
@@ -140,7 +140,7 @@ int bright_cb(Ihandle *self) {
     save_undo_state();
 
     for (int i = 0; i < img_h * img_w; i++) {
-    // শেষের \n বাদ দেওয়া হয়েছে এবং বক্সটা বড় করার জন্য একটু স্পেস (Space) দেওয়া হয়েছে
+    
         int r = img_pixels[i].r + amount;
         int g = img_pixels[i].g + amount;
         int b = img_pixels[i].b + amount;
@@ -154,8 +154,8 @@ int bright_cb(Ihandle *self) {
     return IUP_DEFAULT;
 }
 
-    // শেষের \n বাদ দেওয়া হয়েছে এবং বক্সটা বড় করার জন্য একটু স্পেস (Space) দেওয়া হয়েছে
-// Rotate Callback (90 Degrees Clockwise)
+
+//7. Rotate Callback (90 Degrees Clockwise)
 int rotate_cb(Ihandle *self) {
     (void)self;
     if (!img_pixels || img_w <= 0 || img_h <= 0){
@@ -190,7 +190,7 @@ int rotate_cb(Ihandle *self) {
     return IUP_DEFAULT;
 }
 
-// Crop Callback
+//8. Crop Callback
 int crop_cb(Ihandle *self) {
     (void)self;
     if (!img_pixels || img_w <= 0 || img_h <= 0){
@@ -244,7 +244,7 @@ int crop_cb(Ihandle *self) {
 }
 
 
-// Blur Callback (3x3 Box Blur)
+//9. Blur Callback (3x3 Box Blur)
 int blur_cb(Ihandle *self) {
     (void)self;
     if (!img_pixels || img_w <= 0 || img_h <= 0){
@@ -290,7 +290,7 @@ int blur_cb(Ihandle *self) {
     return IUP_DEFAULT;
 }
 
-// Grayscale Callback
+//10. Grayscale Callback
 int grayscale_cb(Ihandle *self) {
     (void)self;
     if (!img_pixels || img_w <= 0 || img_h <= 0){
@@ -308,7 +308,7 @@ int grayscale_cb(Ihandle *self) {
     return IUP_DEFAULT;
 }
 
-// Horizontal Flip Callback
+//11. Horizontal Flip Callback
 int hflip_cb(Ihandle *self) {
     (void)self;
     if (!img_pixels || img_w <= 0 || img_h <= 0){
@@ -335,7 +335,7 @@ int hflip_cb(Ihandle *self) {
     return IUP_DEFAULT;
 }
 
-// Vertical Flip Callback
+//12. Vertical Flip Callback
 int vflip_cb(Ihandle *self) {
     (void)self;
     if (!img_pixels || img_w <= 0 || img_h <= 0){
@@ -362,7 +362,7 @@ int vflip_cb(Ihandle *self) {
     return IUP_DEFAULT;
 }
 
-// Invert Color Callback
+//13. Invert Color Callback
 int invert_cb(Ihandle *self) {
     (void)self;
     if (!img_pixels || img_w <= 0 || img_h <= 0){
@@ -381,7 +381,7 @@ int invert_cb(Ihandle *self) {
     return IUP_DEFAULT;
 }
 
-// Exit Callback
+//14. Exit Callback
 int exit_cb(Ihandle *self) {
     (void)self;
 
