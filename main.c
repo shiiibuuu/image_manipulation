@@ -5,7 +5,7 @@
 #include "gui.h"
 #include "image.h"
 
-// image.h ও gui.h-এ ঘোষিত extern গ্লোবাল ভেরিয়েবলগুলোর মূল ডেফিনেশন
+
 BMPPixel *img_pixels = NULL;
 int img_w = 0;
 int img_h = 0;
@@ -14,10 +14,10 @@ BMPPixel *undo_pixels = NULL;
 int undo_w = 0;
 int undo_h = 0;
 
-Ihandle *display = NULL; // গ্লোবাল ক্যানভাস হ্যান্ডেল
+Ihandle *display = NULL; 
 
 int main(int argc, char **argv) {
-    // IUP ইনিশিয়ালাইজেশন চেক
+
     if (IupOpen(&argc, &argv) == IUP_ERROR) {
         fprintf(stderr, "Error initializing IUP library!\n");
         return 1;
@@ -56,13 +56,11 @@ int main(int argc, char **argv) {
     IupSetAttribute(canvas, "RASTERSIZE", "625x400");
     IupSetAttribute(canvas, "EXPAND", "YES");
 
-    display = canvas; // ক্যানভাসকে গ্লোবাল ডিসপ্লে হ্যান্ডেলে সেট করা হলো
+    display = canvas; 
 
     IupSetCallback(canvas, "ACTION", (Icallback)canvas_redraw_cb);
 
     // Main Dialog Creation
-    //Ihandle *dlg = IupDialog(canvas);
-    // Canvas-কে একটি Vbox এর ভেতর র‍্যাপ (wrap) করা হলো গ্লিচ দূর করতে
     Ihandle *vbox = IupVbox(canvas, NULL);
     Ihandle *dlg = IupDialog(vbox);
     IupSetAttribute(dlg, "TITLE", "BMP Image Manipulation Software");
@@ -84,7 +82,7 @@ int main(int argc, char **argv) {
     IupSetCallback(crop_btn,   "ACTION", (Icallback)crop_cb);
     IupSetCallback(blur_btn,   "ACTION", (Icallback)blur_cb);
 
-    // Window 'X' বাটনে চাপ দিলে মেমোরি ফ্রী নিশ্চিত করা
+    // Ensure the free of memory space while pressing exit
     IupSetCallback(dlg, "CLOSE_CB", (Icallback)exit_cb);
 
     IupShowXY(dlg, IUP_CENTER, IUP_CENTER);
