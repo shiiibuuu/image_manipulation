@@ -6,25 +6,25 @@
 
 #pragma pack(push, 1)
 typedef struct {
-    uint16_t type;        // 'BM' Magic Number
-    uint32_t size;        // File Size
+    uint16_t type;       
+    uint32_t size;        
     uint16_t reserved1;
     uint16_t reserved2;
-    uint32_t pixelOffset; // Offset to image data
+    uint32_t pixelOffset;
 } BMPFileHeader;
 
 typedef struct {
-    uint32_t size;            // Header Size
-    int32_t  width;           // Image Width
-    int32_t  height;          // Image Height
-    uint16_t planes;          // Color Planes
-    uint16_t bitCount;        // Bits Per Pixel (24-bit)
-    uint32_t compression;     // Compression Method
-    uint32_t imageSize;       // Image Data Size
-    int32_t  xPixelsPerM;     // Horizontal Resolution
-    int32_t  yPixelsPerM;     // Vertical Resolution
-    uint32_t colorsUsed;      // Colors Used
-    uint32_t colorsImportant; // Important Colors
+    uint32_t size;           
+    int32_t  width;          
+    int32_t  height;     
+    uint16_t planes;       
+    uint16_t bitCount;     
+    uint32_t compression;    
+    uint32_t imageSize;    
+    int32_t  xPixelsPerM;    
+    int32_t  yPixelsPerM;   
+    uint32_t colorsUsed;   
+    uint32_t colorsImportant; 
 } BMPInfoHeader;
 #pragma pack(pop)
 
