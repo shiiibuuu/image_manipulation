@@ -1,5 +1,9 @@
 # image_manipulation
 
+#for cloning my readme file (in linux)
+
+git clone https://github.com/shiiibuuu/image_manipulation
+
 #for download iup file (in linux)
 
 sudo apt update 
