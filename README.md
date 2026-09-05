@@ -39,13 +39,13 @@ Displays the application viewport holding a standard 24-bit BMP image centered i
 | :--- | :--- | :--- | :---: |
 | **Grayscale** | `Edit -> Grayscale` | Converts color pixels to intensity using BT.601 weighted luminance: `gray = 0.299*R + 0.587*G + 0.114*B` | <img width="1920" height="913" alt="Screenshot_02_Grayscale" src="https://github.com/user-attachments/assets/6c0c05d8-67a9-4566-b058-465557a606d7" /> |
 | **Brightness** | `Edit -> Brightness Adjustment` | Adds/subtracts user scalar `S` in [-255, 255] with clamping to [0, 255]: `C' = clamp(C + S)` |  <img width="1920" height="913" alt="Screenshot_03_Brightness" src="https://github.com/user-attachments/assets/0c6de67c-d84e-449c-a0dc-a7f9d8d09a66" /> |
-| **Inversion** | `Edit -> Image Inversion` | Computes photographic negative values per RGB channel: `R' = 255 - R`, `G' = 255 - G`, `B' = 255 - B` | <img src="এখানে_ইনভার্সন_ছবির_লিংক" width="220"> |
-| **Horizontal Flip** | `Edit -> Horizontal Flip` | Mirrors image horizontally across the vertical axis: `(x, y) <-> (W - 1 - x, y)` | <img src="এখানে_এইচ_ফ্লিপ_ছবির_লিংক" width="220"> |
-| **Vertical Flip** | `Edit -> Vertical Flip` | Mirrors image vertically across the horizontal axis: `(x, y) <-> (x, H - 1 - y)` | <img src="এখানে_ভি_ফ্লিপ_ছবির_লিংক" width="220"> |
-| **Rotate 90°** | `Edit -> Rotate 90 Degree` | Rotates canvas 90° clockwise by allocating swapped dimensions (H x W): `x' = H - 1 - y`, `y' = x` | <img src="এখানে_রোটেট_ছবির_লিংক" width="220"> |
-| **Cropping** | `Edit -> Crop` | Extracts rectangular sub-region (X, Y, W, H) into a new image buffer | <img src="এখানে_ক্রপ_ছবির_লিংক" width="220"> |
-| **3x3 Box Blur** | `Edit -> Blur` | Smooths pixels via spatial neighborhood averaging over 3x3 grid | <img src="এখানে_ব্লার_ছবির_লিংক" width="220"> |
-| **Sharpening** | `Edit -> Sharpen` | Enhances high-frequency edge detail using 3x3 convolution kernel: `[0, -1, 0 / -1, 5, -1 / 0, -1, 0]` | <img src="এখানে_শার্পেন_ছবির_লিংক" width="220"> |
+| **Inversion** | `Edit -> Image Inversion` | Computes photographic negative values per RGB channel: `R' = 255 - R`, `G' = 255 - G`, `B' = 255 - B` |<img width="1920" height="913" alt="Screenshot_04_Inversion" src="https://github.com/user-attachments/assets/98dfe334-21c1-4b97-a7e7-4fae1b47bd6b" /> |
+| **Horizontal Flip** | `Edit -> Horizontal Flip` | Mirrors image horizontally across the vertical axis: `(x, y) <-> (W - 1 - x, y)` | <img width="1920" height="913" alt="Screenshot_05_HFlip" src="https://github.com/user-attachments/assets/dba861c3-de57-4738-844f-0aef75c7ba4b" /> |
+| **Vertical Flip** | `Edit -> Vertical Flip` | Mirrors image vertically across the horizontal axis: `(x, y) <-> (x, H - 1 - y)` |<img width="1920" height="913" alt="Screenshot_06_VFlip" src="https://github.com/user-attachments/assets/2295ebb2-c0c3-4e60-a936-f560efbbe570" /> |
+| **Rotate 90°** | `Edit -> Rotate 90 Degree` | Rotates canvas 90° clockwise by allocating swapped dimensions (H x W): `x' = H - 1 - y`, `y' = x` | <img width="1920" height="913" alt="Screenshot_07_Rotate" src="https://github.com/user-attachments/assets/aab881ad-a906-4139-8ce6-562818fcc05e" /> |
+| **Cropping** | `Edit -> Crop` | Extracts rectangular sub-region (X, Y, W, H) into a new image buffer | <img width="1920" height="913" alt="Screenshot_08_Crop" src="https://github.com/user-attachments/assets/0287d5ec-8578-4195-89ea-793c7d750f5a" /> |
+| **3x3 Box Blur** | `Edit -> Blur` | Smooths pixels via spatial neighborhood averaging over 3x3 grid | <img width="1920" height="913" alt="Screenshot_09_Blur" src="https://github.com/user-attachments/assets/037e5b26-e85f-43a2-996e-4cb5d3981df9" /> |
+| **Sharpening** | `Edit -> Sharpen` | Enhances high-frequency edge detail using 3x3 convolution kernel: `[0, -1, 0 / -1, 5, -1 / 0, -1, 0]` | <img width="1920" height="913" alt="Screenshot_10_Sharpen" src="https://github.com/user-attachments/assets/923ca244-a4a4-42d4-ae9f-25ab4a692507" /> |
 
 ---
 
