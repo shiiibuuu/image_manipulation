@@ -37,7 +37,8 @@ Displays the application viewport holding a standard 24-bit BMP image centered i
 
 | Operation | Menu Item | Description & Applied Algorithmic Logic | Visual Output |
 | :--- | :--- | :--- | :---: |
-| **Grayscale** | `Edit -> Grayscale` | Converts color pixels to intensity using BT.601 weighted luminance: <br> `gray = 0.299*R + 0.587*G + 0.114*B` | <img src="images/Screenshot_02_Grayscale.jpg" width="220" alt="Grayscale"> |
+| **Grayscale** | `Edit -> Grayscale` | Converts color pixels to intensity using BT.601 weighted luminance: <br> `gray = 0.299*R + 0.587*G + 0.114*B` | <img width="1920" height="913" alt="Screenshot_02_Grayscale" src="https://github.com/user-attachments/assets/93f70c4c-715d-41d1-b67e-2d26112e60fd" />
+|
 | **Brightness** | `Edit -> Brightness Adjustment` | Adds/subtracts user scalar `S` in [-255, 255] with clamping to [0, 255]: <br> `C' = clamp(C + S)` | <img src="images/Screenshot_03_Brightness.jpg" width="220" alt="Brightness"> |
 | **Inversion** | `Edit -> Image Inversion` | Computes photographic negative values per RGB channel: <br> `R' = 255 - R`, `G' = 255 - G`, `B' = 255 - B` | <img src="images/Screenshot_04_Inversion.jpg" width="220" alt="Inversion"> |
 | **Horizontal Flip** | `Edit -> Horizontal Flip` | Mirrors image horizontally across the vertical axis: <br> `(x, y) <-> (W - 1 - x, y)` | <img src="images/Screenshot_05_HFlip.jpg" width="220" alt="Horizontal Flip"> |
