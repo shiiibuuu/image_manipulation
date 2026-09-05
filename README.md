@@ -24,12 +24,13 @@ The application is designed using a **modular C architecture**, separating user 
 
 ## 🎨 Features & Visual Demonstration
 
-### 1. Main Canvas Interface (Loaded State)
-Displays the application viewport holding a standard 24-bit BMP image centered inside the IUP canvas layout.
+### 1. Main Canvas Interface & Navigation Menus
 
-<p align="center">
-  <img src="images/Screenshot_01_Main_Canvas.jpg" width="550" alt="Main Canvas Window">
-</p>
+The application features a central canvas viewport that automatically centers the loaded 24-bit uncompressed BMP image, along with top-level dropdown menus (`File` and `Edit`) for file stream operations and image processing commands.
+
+| Main Viewport (Image Loaded) | File Menu Options | Edit Menu Options |
+| :---: | :---: | :---: |
+| <img width="1920" height="913" alt="Screenshot_01_Main_Canvas" src="https://github.com/user-attachments/assets/313d6abe-8b2c-48c2-a35c-76f7dd226023" /> | <img width="1920" height="913" alt="Screenshot From 2026-09-06 00-42-04" src="https://github.com/user-attachments/assets/e28b390b-5868-4257-b324-b1b6da1b8284" /> | <img width="1920" height="913" alt="Screenshot From 2026-09-06 00-42-12" src="https://github.com/user-attachments/assets/3e3c3259-7446-4597-9c23-34f57365b68b" /> |
 
 ---
 
