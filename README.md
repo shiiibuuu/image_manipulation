@@ -1,8 +1,11 @@
 # 🖼️ BMP Image Manipulation Software (C & IUP)
 
 **Course:** Image Processing / C Programming Project
+
 **Name:** Md. Shoyeb Uddin Shibli
+
 **Roll:** 1847
+
 **reg no.:** 2025-816-376
 
 An interactive, desktop-based graphical **Image Manipulation Software** written in C99 using the **IUP (Portable User Interface)** library. This application provides custom pixel-level digital image processing capabilities for 24-bit uncompressed BMP (Bitmap) files without relying on external image processing libraries for pixel algorithms.
