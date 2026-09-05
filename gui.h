@@ -24,5 +24,6 @@ int bright_cb(Ihandle *self);
 int rotate_cb(Ihandle *self);
 int crop_cb(Ihandle *self);
 int blur_cb(Ihandle *self);
+int sharpen_cb(Ihandle *self);
 
 #endif // GUI_H
