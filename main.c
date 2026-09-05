@@ -41,11 +41,12 @@ int main(int argc, char **argv) {
     Ihandle *rotate_btn = IupItem("Rotate 90 Degree", NULL);
     Ihandle *crop_btn   = IupItem("Crop", NULL);
     Ihandle *blur_btn   = IupItem("Blur", NULL);
+    Ihandle *sharpen_btn = IupItem("sharpen", NULL);
 
     Ihandle *edit_menu = IupMenu(
         undo_btn, IupSeparator(),
         gray_btn, bright_btn, invert_btn, hflip_btn, vflip_btn,
-        rotate_btn, crop_btn, blur_btn, NULL
+        rotate_btn, crop_btn, blur_btn, sharpen_btn, NULL
     );
     Ihandle *sub_edit = IupSubmenu("Edit", edit_menu);
 
@@ -81,6 +82,7 @@ int main(int argc, char **argv) {
     IupSetCallback(rotate_btn, "ACTION", (Icallback)rotate_cb);
     IupSetCallback(crop_btn,   "ACTION", (Icallback)crop_cb);
     IupSetCallback(blur_btn,   "ACTION", (Icallback)blur_cb);
+    IupSetCallback(sharpen_btn, "ACTION", (Icallback)sharpen_cb);
 
     // Ensure the free of memory space while pressing exit
     IupSetCallback(dlg, "CLOSE_CB", (Icallback)exit_cb);
