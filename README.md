@@ -73,8 +73,8 @@ The application features a central canvas viewport that automatically centers th
 ### Execution Instructions
 ```bash
 # 1. Clone the repository
-git clone [https://github.com/your-username/bmp-image-editor.git](https://github.com/your-username/bmp-image-editor.git)
-cd bmp-image-editor
+git clone [https://github.com/shiiibuuu/image_manipulation](https://github.com/shiiibuuu/image_manipulation)
+cd image_manipulation
 
 # 2. Compile the application
 make
