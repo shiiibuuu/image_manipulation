@@ -199,12 +199,12 @@ int crop_cb(Ihandle *self) {
     }
 
     int crop_x = 0, crop_y = 0, crop_w = img_w / 2, crop_h = img_h / 2;
-    if (!IupGetParam("Crop Image", NULL, NULL,
+ /*   if (!IupGetParam("Crop Image", NULL, NULL,
                     "Start X: %i\nStart Y: %i\nWidth: %i\nHeight: %i\n",
                     &crop_x, &crop_y, &crop_w, &crop_h, NULL)) {
         return IUP_DEFAULT;
     }
-
+*/
     
     if (!IupGetParam("Crop Image", NULL, NULL,
                     "Start X:               %i\nStart Y:               %i\nWidth:               %i\nHeight:               %i\n",
