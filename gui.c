@@ -291,7 +291,68 @@ int blur_cb(Ihandle *self) {
     return IUP_DEFAULT;
 }
 
-//10. Grayscale Callback
+//10.Sharpen Callback (3x3 Convolution Sharpening)
+int sharpen_cb(Ihandle *self) {
+    (void)self;
+    if (!img_pixels || img_w <= 0 || img_h <= 0) {
+        IupMessage("Error", "No image loaded to sharpen!");
+        return IUP_DEFAULT;
+    }
+
+    save_undo_state();
+
+    BMPPixel *output = (BMPPixel *)malloc(img_w * img_h * sizeof(BMPPixel));
+    if (!output) return IUP_DEFAULT;
+
+    // 3x3 Sharpening Kernel Definition
+    int kernel[3][3] = {
+        { 0, -1,  0},
+        {-1,  5, -1},
+        { 0, -1,  0}
+    };
+
+    for (int y = 0; y < img_h; y++) {
+        for (int x = 0; x < img_w; x++) {
+            int sum_r = 0, sum_g = 0, sum_b = 0;
+
+            for (int dy = -1; dy <= 1; dy++) {
+                for (int dx = -1; dx <= 1; dx++) {
+                    int nx = x + dx;
+                    int ny = y + dy;
+
+                    if (nx < 0) nx = 0;
+                    if (nx >= img_w) nx = img_w - 1;
+                    if (ny < 0) ny = 0;
+                    if (ny >= img_h) ny = img_h - 1;
+
+                    int idx = ny * img_w + nx;
+                    int k_val = kernel[dy + 1][dx + 1];
+
+                    sum_r += img_pixels[idx].r * k_val;
+                    sum_g += img_pixels[idx].g * k_val;
+                    sum_b += img_pixels[idx].b * k_val;
+                }
+            }
+
+            sum_r = (sum_r < 0) ? 0 : ((sum_r > 255) ? 255 : sum_r);
+            sum_g = (sum_g < 0) ? 0 : ((sum_g > 255) ? 255 : sum_g);
+            sum_b = (sum_b < 0) ? 0 : ((sum_b > 255) ? 255 : sum_b);
+
+            int out_idx = y * img_w + x;
+            output[out_idx].r = (uint8_t)sum_r;
+            output[out_idx].g = (uint8_t)sum_g;
+            output[out_idx].b = (uint8_t)sum_b;
+        }
+    }
+
+    free(img_pixels);
+    img_pixels = output;
+
+    update_canvas_image();
+    return IUP_DEFAULT;
+}
+
+//11. Grayscale Callback
 int grayscale_cb(Ihandle *self) {
     (void)self;
     if (!img_pixels || img_w <= 0 || img_h <= 0){
@@ -309,7 +370,7 @@ int grayscale_cb(Ihandle *self) {
     return IUP_DEFAULT;
 }
 
-//11. Horizontal Flip Callback
+//12. Horizontal Flip Callback
 int hflip_cb(Ihandle *self) {
     (void)self;
     if (!img_pixels || img_w <= 0 || img_h <= 0){
@@ -336,7 +397,7 @@ int hflip_cb(Ihandle *self) {
     return IUP_DEFAULT;
 }
 
-//12. Vertical Flip Callback
+//13. Vertical Flip Callback
 int vflip_cb(Ihandle *self) {
     (void)self;
     if (!img_pixels || img_w <= 0 || img_h <= 0){
@@ -363,7 +424,7 @@ int vflip_cb(Ihandle *self) {
     return IUP_DEFAULT;
 }
 
-//13. Invert Color Callback
+//14. Invert Color Callback
 int invert_cb(Ihandle *self) {
     (void)self;
     if (!img_pixels || img_w <= 0 || img_h <= 0){
@@ -382,7 +443,7 @@ int invert_cb(Ihandle *self) {
     return IUP_DEFAULT;
 }
 
-//14. Exit Callback
+//15. Exit Callback
 int exit_cb(Ihandle *self) {
     (void)self;
 
