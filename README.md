@@ -61,7 +61,14 @@ Displays the application viewport holding a standard $24$-bit BMP image centered
 ### Execution Instructions
 ```bash
 # 1. Clone the repository
-git clone [https://github.com/your-username/bmp-image-editor.git](https://github.com/your-username/bmp-image-editor.git)
+git clone [https://github.com/your-username/bmp-image-editor.git]((https://github.com/shiiibuuu/image_manipulation))
 cd bmp-image-editor
 
-# 2. Compile
+# 2. Compile the application
+make
+
+# 3. Launch the software
+./app
+
+# 4. Clean compiled binaries
+make clean
