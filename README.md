@@ -27,7 +27,10 @@ The application is designed using a **modular C architecture**, separating user 
 ### 1. Main Canvas Interface (Loaded State)
 Displays the application viewport holding a standard 24-bit BMP image centered inside the IUP canvas layout.
 
-![Main window](Screenshots_01_Main_Canvas.jpg)
+<p align="center">
+  <img src="images/Screenshot_01_Main_Canvas.jpg" width="550" alt="Main Canvas Window">
+</p>
+
 ---
 
 ### 2. Core Image Manipulation Operations
