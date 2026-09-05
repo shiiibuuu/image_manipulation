@@ -37,8 +37,8 @@ Displays the application viewport holding a standard 24-bit BMP image centered i
 
 | Operation | Menu Item | Description & Applied Algorithmic Logic | Visual Output |
 | :--- | :--- | :--- | :---: |
-| **Grayscale** | `Edit -> Grayscale` | Converts color pixels to intensity using BT.601 weighted luminance: `gray = 0.299*R + 0.587*G + 0.114*B` | <img src="এখানে_গ্রে স্কেল_ছবির_লিংক" width="220"> |
-| **Brightness** | `Edit -> Brightness Adjustment` | Adds/subtracts user scalar `S` in [-255, 255] with clamping to [0, 255]: `C' = clamp(C + S)` | <img src="এখানে_ব্রাইটনেস_ছবির_লিংক" width="220"> |
+| **Grayscale** | `Edit -> Grayscale` | Converts color pixels to intensity using BT.601 weighted luminance: `gray = 0.299*R + 0.587*G + 0.114*B` | <img width="1920" height="913" alt="Screenshot_02_Grayscale" src="https://github.com/user-attachments/assets/6c0c05d8-67a9-4566-b058-465557a606d7" /> |
+| **Brightness** | `Edit -> Brightness Adjustment` | Adds/subtracts user scalar `S` in [-255, 255] with clamping to [0, 255]: `C' = clamp(C + S)` |  <img width="1920" height="913" alt="Screenshot_03_Brightness" src="https://github.com/user-attachments/assets/0c6de67c-d84e-449c-a0dc-a7f9d8d09a66" /> |
 | **Inversion** | `Edit -> Image Inversion` | Computes photographic negative values per RGB channel: `R' = 255 - R`, `G' = 255 - G`, `B' = 255 - B` | <img src="এখানে_ইনভার্সন_ছবির_লিংক" width="220"> |
 | **Horizontal Flip** | `Edit -> Horizontal Flip` | Mirrors image horizontally across the vertical axis: `(x, y) <-> (W - 1 - x, y)` | <img src="এখানে_এইচ_ফ্লিপ_ছবির_লিংক" width="220"> |
 | **Vertical Flip** | `Edit -> Vertical Flip` | Mirrors image vertically across the horizontal axis: `(x, y) <-> (x, H - 1 - y)` | <img src="এখানে_ভি_ফ্লিপ_ছবির_লিংক" width="220"> |
