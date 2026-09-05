@@ -211,7 +211,8 @@ int crop_cb(Ihandle *self) {
                     &crop_x, &crop_y, &crop_w, &crop_h, NULL)) {
         return IUP_DEFAULT;
     }
-
+    save_undo_state();
+    
     if (crop_x < 0) crop_x = 0;
     if (crop_y < 0) crop_y = 0;
     if (crop_x >= img_w || crop_y >= img_h || crop_w <= 0 || crop_h <= 0) {
